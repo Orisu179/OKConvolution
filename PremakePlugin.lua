@@ -63,6 +63,9 @@ Plugin.sdk.static.libdirs = -- https://github.com/premake/premake-core/wiki/libd
 Plugin.sdk.static.defines = -- https://github.com/premake/premake-core/wiki/defines
 {
 }
+Plugin.sdk.static.custom = function()
+    cppdialect "C++20"
+end
 
 -- SDK SHARED PLUGIN SECTION
 Plugin.sdk.shared.includedirs =
@@ -85,6 +88,9 @@ Plugin.sdk.shared.libdirs =
 Plugin.sdk.shared.defines =
 {
 }
+Plugin.sdk.shared.custom = function()
+    cppdialect "C++20"
+end
 
 -- AUTHORING PLUGIN SECTION
 Plugin.authoring.includedirs =
@@ -112,6 +118,9 @@ Plugin.authoring.libdirs =
 Plugin.authoring.defines =
 {
 }
+Plugin.authoring.custom = function()
+    cppdialect "C++20"
+end
 
 -- SDK TEST PLUGIN SECTION
 _CATCH2_DIR = _AK_SDK_ROOT .. "samples/3rdParty/Catch2/extras/"
@@ -134,6 +143,7 @@ Plugin.sdk.test.excludes =
 {
 }
 Plugin.sdk.test.custom = function()
+    cppdialect "C++20"
 
     filter { "system:android" }
         links {
