@@ -41,6 +41,7 @@ Plugin.authoring = {}
 -- SDK STATIC PLUGIN SECTION
 Plugin.sdk.static.includedirs = -- https://github.com/premake/premake-core/wiki/includedirs
 {
+    "ThirdParty/pffft"
 }
 Plugin.sdk.static.files = -- https://github.com/premake/premake-core/wiki/files
 {
@@ -70,6 +71,7 @@ end
 -- SDK SHARED PLUGIN SECTION
 Plugin.sdk.shared.includedirs =
 {
+    "ThirdParty/pffft"
 }
 Plugin.sdk.shared.files =
 {
@@ -95,6 +97,7 @@ end
 -- AUTHORING PLUGIN SECTION
 Plugin.authoring.includedirs =
 {
+    "../SoundEnginePlugin/ThirdParty/pffft"
 }
 Plugin.authoring.files =
 {

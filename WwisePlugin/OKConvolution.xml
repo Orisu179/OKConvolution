@@ -39,20 +39,37 @@ for the documentation about the plugin xml format
         </Platform>
       </PlatformSupport>
     </PluginInfo>
+    <HasMedia>true</HasMedia>
     <Properties>
       <!-- Add your property definitions here -->
-      <Property Name="Placeholder" Type="Real32" SupportRTPCType="Exclusive" DisplayName="Placeholder">
+      <Property Name="ActiveIRIndex" Type="Uint16" SupportRTPCType="Exclusive" DisplayName="Active IR Slot">
+        <UserInterface Step="1" Fine="1" Decimals="0"/>
+        <DefaultValue>0</DefaultValue>
+        <AudioEnginePropertyID>0</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Uint16">
+              <Min>0</Min> 
+              <Max>15</Max> <!-- Change up to max needed, default is 16 -->
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="DryWetMix" Type="Real32" SupportRTPCType="Exclusive" DisplayName="Dry Wet Mix">
         <UserInterface Step="0.1" Fine="0.001" Decimals="3" UIMax="10" />
         <DefaultValue>0.0</DefaultValue>
-        <AudioEnginePropertyID>0</AudioEnginePropertyID>
+        <AudioEnginePropertyID>1</AudioEnginePropertyID>
         <Restrictions>
           <ValueRestriction>
             <Range Type="Real32">
               <Min>0.001</Min>
-              <Max>1000</Max>
+              <Max>100</Max>
             </Range>
           </ValueRestriction>
         </Restrictions>
+      </Property>
+      <Property Name="CrossFadeTime" Type="Real32" >
+        
       </Property>
     </Properties>
   </EffectPlugin>

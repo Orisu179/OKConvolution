@@ -24,12 +24,12 @@ the specific language governing permissions and limitations under the License.
   Copyright (c) 2026 Audiokinetic Inc.
 *******************************************************************************/
 
-#include "../SoundEnginePlugin/OKConvolutionFX.h"
+#include "../SoundEnginePlugin/ConvolutionEngine.h"
 
 #include <catch_amalgamated.hpp>
 
 TEST_CASE("OKConvolutionFXTestPlaceholder")
 {
-    OKConvolutionFX fx;
+    ConvolutionEngine engine;
     REQUIRE(true);
 }

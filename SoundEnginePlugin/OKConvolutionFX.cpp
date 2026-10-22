@@ -48,9 +48,7 @@ OKConvolutionFX::OKConvolutionFX()
 {
 }
 
-OKConvolutionFX::~OKConvolutionFX()
-{
-}
+OKConvolutionFX::~OKConvolutionFX() = default;
 
 AKRESULT OKConvolutionFX::Init(AK::IAkPluginMemAlloc* in_pAllocator, AK::IAkEffectPluginContext* in_pContext, AK::IAkPluginParam* in_pParams, AkAudioFormat& in_rFormat)
 {
