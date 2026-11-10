@@ -63,6 +63,9 @@ Plugin.sdk.static.libdirs = -- https://github.com/premake/premake-core/wiki/libd
 }
 Plugin.sdk.static.defines = -- https://github.com/premake/premake-core/wiki/defines
 {
+    "PFFFT_STATIC_DEFINE",
+    "PFFASTCONV_STATIC_DEFINE",
+    "PFDSP_STATIC_DEFINE"
 }
 Plugin.sdk.static.custom = function()
     cppdialect "C++20"
@@ -89,6 +92,9 @@ Plugin.sdk.shared.libdirs =
 }
 Plugin.sdk.shared.defines =
 {
+    "PFFFT_STATIC_DEFINE",
+    "PFFASTCONV_STATIC_DEFINE",
+    "PFDSP_STATIC_DEFINE"
 }
 Plugin.sdk.shared.custom = function()
     cppdialect "C++20"
@@ -120,6 +126,9 @@ Plugin.authoring.libdirs =
 }
 Plugin.authoring.defines =
 {
+    "PFFFT_STATIC_DEFINE",
+    "PFFASTCONV_STATIC_DEFINE",
+    "PFDSP_STATIC_DEFINE"
 }
 Plugin.authoring.custom = function()
     cppdialect "C++20"
@@ -161,7 +170,10 @@ Plugin.sdk.test.libdirs =
 }
 Plugin.sdk.test.defines =
 {
-    "NOMINMAX"
+    "NOMINMAX",
+    "PFFFT_STATIC_DEFINE",
+    "PFFASTCONV_STATIC_DEFINE",
+    "PFDSP_STATIC_DEFINE"
 }
 
 return Plugin

@@ -101,3 +101,13 @@ AKRESULT OKConvolutionFX::TimeSkip(AkUInt32 in_uFrames)
 {
     return AK_DataReady;
 }
+
+bool OKConvolutionFX::SupportMediaRelocation() const
+{
+    return false;
+}
+
+AKRESULT OKConvolutionFX::RelocateMedia(AkUInt8* string, AkUInt8* text)
+{
+    return AKRESULT::AK_Success;
+}

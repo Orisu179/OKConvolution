@@ -36,7 +36,7 @@ class OKConvolutionFX
 {
 public:
     OKConvolutionFX();
-    ~OKConvolutionFX();
+    ~OKConvolutionFX() override;
 
     /// Plug-in initialization.
     /// Prepares the plug-in for data processing, allocates memory and sets up the initial conditions.
@@ -60,6 +60,8 @@ public:
     /// This can be used to simulate processing that would have taken place (e.g. update internal state).
     /// Return AK_DataReady or AK_NoMoreData, depending if there would be audio output or not at that point.
     AKRESULT TimeSkip(AkUInt32 in_uFrames) override;
+    bool SupportMediaRelocation() const override;
+    AKRESULT RelocateMedia(AkUInt8*, AkUInt8*) override;
 
 private:
     OKConvolutionFXParams* m_pParams;

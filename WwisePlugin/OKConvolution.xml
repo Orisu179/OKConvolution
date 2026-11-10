@@ -57,7 +57,7 @@ for the documentation about the plugin xml format
       </Property>
       <Property Name="DryWetMix" Type="Real32" SupportRTPCType="Exclusive" DisplayName="Dry Wet Mix">
         <UserInterface Step="0.1" Fine="0.001" Decimals="3" UIMax="10" />
-        <DefaultValue>0.0</DefaultValue>
+        <DefaultValue>100.0</DefaultValue>
         <AudioEnginePropertyID>1</AudioEnginePropertyID>
         <Restrictions>
           <ValueRestriction>
@@ -69,7 +69,17 @@ for the documentation about the plugin xml format
         </Restrictions>
       </Property>
       <Property Name="CrossFadeTime" Type="Real32" >
-        
+        <UserInterface Step="5" Fine="0.1" Decimals="3" UIMax="10" />
+        <DefaultValue>100.0</DefaultValue>
+        <AudioEnginePropertyID>2</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>0.01</Min>
+              <Max>1000</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
       </Property>
     </Properties>
   </EffectPlugin>

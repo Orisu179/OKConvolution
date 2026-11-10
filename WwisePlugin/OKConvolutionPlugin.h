@@ -30,17 +30,36 @@ the specific language governing permissions and limitations under the License.
 
 /// See https://www.audiokinetic.com/library/edge/?source=SDK&id=plugin__dll.html
 /// for the documentation about Authoring plug-ins
-class OKConvolutionPlugin final
+class OKConvolutionPlugin final 
     : public AK::Wwise::Plugin::AudioPlugin
+    , public AK::Wwise::Plugin::RequestHost
+    , public AK::Wwise::Plugin::Notifications::ObjectMedia
+    , public AK::Wwise::Plugin::MediaConverter                  // <-- Required if converting IR WAV files to custom/WEM media 
 {
 public:
     OKConvolutionPlugin();
-    ~OKConvolutionPlugin();
+    ~OKConvolutionPlugin() override;
 
     /// This function is called by Wwise to obtain parameters that will be written to a bank.
     /// Because these can be changed at run-time, the parameter block should stay relatively small.
     // Larger data should be put in the Data Block.
     bool GetBankParameters(const GUID & in_guidPlatform, AK::Wwise::Plugin::DataWriter& in_dataWriter) const override;
+    void NotifyPluginMediaChanged() override;
+    
+    AK::Wwise::Plugin::ConversionResult ConvertFile(
+        const GUID& in_guidPlatform, 
+        const BasePlatformID& in_basePlatform, 
+        const AkOSChar* in_szSourceFile, 
+        const AkOSChar* in_szDestFile, 
+        AkUInt32 in_uSampleRate, 
+        AkUInt32 in_uBlockLength, 
+        AK::Wwise::Plugin::IProgress* in_pProgress, 
+        AK::Wwise::Plugin::IWriteString* io_pError) const override;
+    
+    uint32_t GetCurrentConversionSettingsHash(
+        const GUID& in_guidPlatform, 
+        AkUInt32 in_uSampleRate, 
+        AkUInt32 in_uBlockLength) const override;
 };
 
 AK_DECLARE_PLUGIN_CONTAINER(OKConvolution);	// Exposes our PluginContainer structure that contains the info for our plugin

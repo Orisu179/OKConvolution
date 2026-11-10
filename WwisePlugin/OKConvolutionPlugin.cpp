@@ -38,11 +38,33 @@ OKConvolutionPlugin::~OKConvolutionPlugin()
 bool OKConvolutionPlugin::GetBankParameters(const GUID & in_guidPlatform, AK::Wwise::Plugin::DataWriter& in_dataWriter) const
 {
     // Write bank data here
-    in_dataWriter.WriteReal32(m_propertySet.GetReal32(in_guidPlatform, "DryWetMix"));
     in_dataWriter.WriteInt32(m_propertySet.GetUInt16(in_guidPlatform, "ActiveIRIndex"));
+    in_dataWriter.WriteReal32(m_propertySet.GetReal32(in_guidPlatform, "DryWetMix"));
+    in_dataWriter.WriteReal32(m_propertySet.GetReal32(in_guidPlatform, "CrossFadeTime"));
 
     return true;
 }
+
+void OKConvolutionPlugin::NotifyPluginMediaChanged()
+{
+    // change this later
+    m_host.NotifyInternalDataChanged(AK::IAkPluginParam::ALL_PLUGIN_DATA_ID, false);
+}
+
+AK::Wwise::Plugin::ConversionResult OKConvolutionPlugin::ConvertFile(const GUID& in_guidPlatform,
+    const BasePlatformID& in_basePlatform, const AkOSChar* in_szSourceFile, const AkOSChar* in_szDestFile,
+    AkUInt32 in_uSampleRate, AkUInt32 in_uBlockLength, AK::Wwise::Plugin::IProgress* in_pProgress,
+    AK::Wwise::Plugin::IWriteString* io_pError) const
+{
+    return AK::Wwise::Plugin::ConversionSuccess;
+}
+
+uint32_t OKConvolutionPlugin::GetCurrentConversionSettingsHash(const GUID& in_guidPlatform, AkUInt32 in_uSampleRate,
+    AkUInt32 in_uBlockLength) const
+{
+    return 0;
+}
+
 
 AK_DEFINE_PLUGIN_CONTAINER(OKConvolution);											// Create a PluginContainer structure that contains the info for our plugin
 AK_EXPORT_PLUGIN_CONTAINER(OKConvolution);											// This is a DLL, we want to have a standardized name

@@ -28,7 +28,27 @@ the specific language governing permissions and limitations under the License.
 
 #include <catch_amalgamated.hpp>
 
-TEST_CASE("OKConvolutionFXTestPlaceholder")
+// 2. RAII Wrapper to build a valid AkAudioBuffer in a unit test
+struct TestAudioBuffer
+{
+    std::vector<float> contiguousSamples;
+    AkAudioBuffer akBuffer;
+
+    TestAudioBuffer(AkUInt32 uChannels, AkUInt16 uFrames)
+        : contiguousSamples(uChannels * uFrames, 0.0f)
+    {
+        AkChannelConfig cfg;
+        cfg.SetStandard(uChannels == 1 ? AK_SPEAKER_SETUP_MONO : AK_SPEAKER_SETUP_STEREO);
+        
+        // Attach our std::vector memory directly to the AkAudioBuffer
+        akBuffer.AttachContiguousDeinterleavedData(
+            contiguousSamples.data(), uFrames, uFrames, cfg);
+    }
+
+    float* GetChannel(AkUInt32 uCh) { return akBuffer.GetChannel(uCh); }
+};
+
+TEST_CASE("Basic Test")
 {
     ConvolutionEngine engine;
     REQUIRE(true);
